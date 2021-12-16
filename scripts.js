@@ -1,9 +1,7 @@
 
 var counter = 0;
-
 var tiles = [[]];
 var player = 1;
-const row = [];
 
 
 
@@ -24,9 +22,13 @@ function get_total_tiles(){
 function create_struct(){
     var total_tiles = get_total_tiles();
     total_tiles = Math.sqrt(total_tiles);
+    const test_arr = [];
 
+    for(let i = 0; i < total_tiles; i++){
+        test_arr.push(0);
+    }
     for(let j = 0; j < total_tiles; j++){
-        tiles[j] = [0,0,0,0,0];
+        tiles[j] = [test_arr];
     }
 }
 
@@ -75,8 +77,7 @@ function horyzontal_check(w_tiles){
                 win_cnt = 0;
             }
 
-            if(tiles[i][j] == 2){
-               
+            if(tiles[i][j] == 2){               
                 win2_cnt++;
                 if(win2_cnt == w_tiles){
                     return 2;
@@ -91,7 +92,6 @@ function horyzontal_check(w_tiles){
 }
 
 function vertical_check(w_tiles){
-
     var total_tiles = Math.sqrt(get_total_tiles());
     win_cnt = 0;
     win2_cnt = 0;
@@ -106,9 +106,7 @@ function vertical_check(w_tiles){
             else if(tiles[j][i] == 2 || tiles[j][i] == 0){
                 win_cnt = 0;
             }
-
             if(tiles[j][i] == 2){
-               
                 win2_cnt++;
                 if(win2_cnt == w_tiles){
                     return 2;
@@ -117,28 +115,29 @@ function vertical_check(w_tiles){
             else if(tiles[j][i] == 1 || tiles[j][i] == 0){
                 win2_cnt = 0;
             }
-        }
-        
+        }      
     }
+    return 0;
+}
 
+function diagonal_check_l(){
 
     return 0;
+}
+
+function diagonal_check_r(){
+
+    return 0;
+}
+
+function reset(){
+    location.reload();
 }
 
 function check_winner(){
     
     var tile_scope;
     
-    /*for(let i = 0; i < total_tiles; i++){
-        for(let j = 0; j < total_tiles; j++){
-            if(tiles[i][j] != 0){
-                tile_scope = tiles[i][j];
-                break;
-            }
-        }
-    }*/
-   // vertical_check(5);
-    /*var horyzontal_lines =*/ ;
     if(vertical_check(5) == 1){
         return 1;
     }
@@ -151,24 +150,18 @@ function check_winner(){
     else if(horyzontal_check(5) == 2){
         return 2;
     }
-    /*var vertical_lines = vertical_check(5);
-    if(vertical_lines == 1){
-        window.alert("winner1");
+    else if(diagonal_check_l(5) == 1){
         return 1;
     }
-    else if(vertical_lines == 2){
-        window.alert('winner2');
+    else if(diagonal_check_l(5) == 2){
         return 2;
-    }*/
-
-    
-
-   /* if(vertical_lines == 1){
-        window.alert("winner1");
     }
-    else if(vertical_lines == 2){
-        window.alert('winner2');
-    }*/
+    else if(diagonal_check_r(5) == 1){
+        return 1;
+    }
+    else if(diagonal_check_r(5) == 2){
+        return 2;
+    }
 }
 
 function change(element){
@@ -176,16 +169,17 @@ function change(element){
     var winner = check_winner();
     if(winner == 1){
         window.alert("winner1");
+        reset();
+
     }
     else if (winner == 2){
         window.alert('winner2');
+        reset();
     }
-    
-    
 
 }
 
      //test output 
-    /*  var x = document.getElementById('test');
+    /*    /*var x = document.getElementById('test');
 
-    x.innerHTML =  tiles[0][0];   */
+    x.innerHTML =  test_arr;*/  

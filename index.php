@@ -10,7 +10,7 @@
         for($i = 0; $i < $size; $i++){
             echo '<tr>';
                 for($j = 0; $j < $size; $j++){
-                    echo '<td> <input onchange="change(this)" type="text" class="tile" id="tile_'.$i.'_'.$j.'" name="tiles"> </td>';
+                    echo '<td> <input onclick="change(this)" type="text" class="tile" id="tile_'.$i.'_'.$j.'" name="tiles"> </td>';
                 }
             echo '</tr>';
         }
