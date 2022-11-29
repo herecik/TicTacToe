@@ -1,4 +1,5 @@
 
+
 var counter = 0;
 var tiles = [[]];
 var player = 1;
@@ -66,8 +67,11 @@ function horyzontal_check(w_tiles){
     win2_cnt = 0;
     for(let i = 0; i < total_tiles; i++){       
         for(let j = 0; j < total_tiles; j++){
+            if(j == 0){
+                win_cnt = 0;
+                win2_cnt = 0;
+            }
             if(tiles[i][j] == 1){
-               
                 win_cnt++;
                 if(win_cnt == w_tiles){
                     return 1;
@@ -97,6 +101,10 @@ function vertical_check(w_tiles){
     win2_cnt = 0;
     for(let i = 0; i < total_tiles; i++){
         for(let j = 0; j < total_tiles; j++){
+            if(j == 0){
+                win_cnt = 0;
+                win2_cnt = 0;
+            }
             if(tiles[j][i] == 1){
                 win_cnt++;
                 if(win_cnt == w_tiles){

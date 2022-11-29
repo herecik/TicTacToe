@@ -1,5 +1,5 @@
 <?php 
-    $play_size = $_POST['param'];
+    
     $tiles = [];
 
     function generate_field($size){
@@ -34,7 +34,10 @@
                     Rozměr hracího pole: <input type = 'text' name = 'param'>
                     <input type = 'submit' value = 'Submit'>
                 </form>
-                <?php generate_field($play_size);?>
+                <?php 
+                    $play_size = $_POST['param'];
+                    generate_field($play_size);
+                    ?>
                 <p id="test"> </p>
             </center>
         </div>
