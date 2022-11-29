@@ -133,11 +133,12 @@ function vertical_check(w_tiles){
     return 0;
 }
 
+//diagonal left to right
 function diagonal_check_l(){
 
     return 0;
 }
-
+//diagonal rigth ro left 
 function diagonal_check_r(){
 
     return 0;
