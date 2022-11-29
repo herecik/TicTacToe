@@ -3,6 +3,7 @@
 var counter = 0;
 var tiles = [[]];
 var player = 1;
+const to_win = 3;
 
 
 function get_index_row(element_str){
@@ -16,12 +17,12 @@ function get_index_collum(element_str){
 }
 
 function get_total_tiles(){
-    return document.getElementsByName('tiles').length;
+    return Math.sqrt(document.getElementsByName('tiles').length);
 }
 
 function create_struct(){
     
-    var total_tiles = Math.sqrt(get_total_tiles());
+    var total_tiles = get_total_tiles();
     //total_tiles = Math.sqrt(total_tiles);
     var test_arr = [];
 
@@ -67,9 +68,9 @@ function change_tile(element){
 }
 
 function horyzontal_check(w_tiles){
-    var total_tiles = Math.sqrt(get_total_tiles());
-    win_cnt = 0;
-    win2_cnt = 0;
+    var total_tiles = get_total_tiles();
+    var win_cnt = 0;
+    var win2_cnt = 0;
     for(let i = 0; i < total_tiles; i++){       
         for(let j = 0; j < total_tiles; j++){
             if(j == 0){
@@ -102,8 +103,8 @@ function horyzontal_check(w_tiles){
 
 function vertical_check(w_tiles){
     var total_tiles = Math.sqrt(get_total_tiles());
-    win_cnt = 0;
-    win2_cnt = 0;
+    var win_cnt = 0;
+    var win2_cnt = 0;
     for(let i = 0; i < total_tiles; i++){
         for(let j = 0; j < total_tiles; j++){
             if(j == 0){
@@ -134,7 +135,46 @@ function vertical_check(w_tiles){
 }
 
 //diagonal left to right
-function diagonal_check_l(){
+function diagonal_check_l(w_tiles){
+    var total_tiles = get_total_tiles();
+    var win_cnt = 0;
+    var win2_cnt = 0;
+
+    for(let t = 0; t < total_tiles; t++){
+        win_cnt = 0;
+        win2_cnt = 0;
+        for(let x = 0; x <= t; x++){
+            for( let y = t; y >= 0; y--){
+                if(tiles[x][y] == 1){
+                    win_cnt++;
+                    document.getElementById("test").innerHTML = win_cnt;
+                    if(win_cnt == w_tiles){
+                        return 1;
+                    }
+                }
+                /*else if(tiles[x][y] == 2){
+                    win_cnt = 0;
+                }
+                /*else if(tiles[x][y] == 2 || tiles[x][y] == null){
+                    win_cnt = 0;
+                }  /*
+                
+                if(tiles[x][y] == 2){
+                    win2_cnt++;
+                    if(win2_cnt == w_tiles){
+                        return 2;
+                    }
+                }
+                else if(tiles[x][y] == 1 || tiles[x][y] == null){
+                    win2_cnt = 0;
+                }  */
+            }
+
+
+
+        }
+    }
+
 
     return 0;
 }
@@ -152,28 +192,28 @@ function check_winner(){
     
     var tile_scope;
     
-    if(vertical_check(5) == 1){
+    if(vertical_check(to_win) == 1){
         return 1;
     }
-    else if(vertical_check(5) == 2){
+    else if(vertical_check(to_win) == 2){
         return 2;
     }
-    else if(horyzontal_check(5) == 1){
+    else if(horyzontal_check(to_win) == 1){
         return 1;
     }
-    else if(horyzontal_check(5) == 2){
+    else if(horyzontal_check(to_win) == 2){
         return 2;
     }
-    else if(diagonal_check_l(5) == 1){
+    else if(diagonal_check_l(to_win) == 1){
         return 1;
     }
-    else if(diagonal_check_l(5) == 2){
+    else if(diagonal_check_l(to_win) == 2){
         return 2;
     }
-    else if(diagonal_check_r(5) == 1){
+    else if(diagonal_check_r(to_win) == 1){
         return 1;
     }
-    else if(diagonal_check_r(5) == 2){
+    else if(diagonal_check_r(to_win) == 2){
         return 2;
     }
 }
@@ -192,3 +232,5 @@ function change(element){
     }
 
 }
+
+//alert(get_total_tiles());
