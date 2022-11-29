@@ -5,7 +5,6 @@ var tiles = [[]];
 var player = 1;
 
 
-
 function get_index_row(element_str){
     var row = element_str.charAt(5);
     return row;
@@ -21,16 +20,19 @@ function get_total_tiles(){
 }
 
 function create_struct(){
-    var total_tiles = get_total_tiles();
-    total_tiles = Math.sqrt(total_tiles);
-    const test_arr = [];
+    
+    var total_tiles = Math.sqrt(get_total_tiles());
+    //total_tiles = Math.sqrt(total_tiles);
+    var test_arr = [];
 
     for(let i = 0; i < total_tiles; i++){
         test_arr.push(0);
     }
+    //alert(test_arr[2]);
     for(let j = 0; j < total_tiles; j++){
         tiles[j] = [test_arr];
     }
+    
 }
 
 function switch_player(p){
@@ -47,12 +49,15 @@ function save_tile(element){
     var el = element.id;
     tiles[get_index_row(el)][get_index_collum(el)] = player;
     change_tile(element);
-    
+        
     player = switch_player(player);
+    
     
 }
 
 function change_tile(element){
+    //DEBUG
+    //alert(tiles);
     if(player == 1){
         element.value = "O";
     }
@@ -77,7 +82,7 @@ function horyzontal_check(w_tiles){
                     return 1;
                 }
             }
-            else if(tiles[i][j] == 2 || tiles[i][j] == 0){
+            else if(tiles[i][j] == 2 || tiles[i][j] == null){
                 win_cnt = 0;
             }
 
@@ -87,7 +92,7 @@ function horyzontal_check(w_tiles){
                     return 2;
                 }
             }
-            else if(tiles[i][j] == 1 || tiles[i][j] == 0){
+            else if(tiles[i][j] == 1 || tiles[i][j] == null){
                 win2_cnt = 0;
             }
         }
@@ -111,7 +116,7 @@ function vertical_check(w_tiles){
                     return 1;
                 }
             }  
-            else if(tiles[j][i] == 2 || tiles[j][i] == 0){
+            else if(tiles[j][i] == 2 || tiles[j][i] == null){
                 win_cnt = 0;
             }
             if(tiles[j][i] == 2){
@@ -120,7 +125,7 @@ function vertical_check(w_tiles){
                     return 2;
                 }
             }
-            else if(tiles[j][i] == 1 || tiles[j][i] == 0){
+            else if(tiles[j][i] == 1 || tiles[j][i] == null){
                 win2_cnt = 0;
             }
         }      
@@ -186,8 +191,3 @@ function change(element){
     }
 
 }
-        //commit test
-     //test output 
-    /*    /*var x = document.getElementById('test');
-
-    x.innerHTML =  test_arr;*/  
