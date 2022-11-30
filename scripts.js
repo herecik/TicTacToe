@@ -1,44 +1,34 @@
-
-
 var counter = 0;
 var tiles = [[]];
 var player = 1;
 const to_win = 5;
-var to_win_got = 0;
 
-
+//funkce vezme danou buňku a vrátí index řádku
 function get_index_row(element_str){
     var row = element_str.charAt(5);
     return row;
 }
-
+//funkce vezme danou buňku a vrátí index sloupce
 function get_index_collum(element_str){
     var collum = element_str.charAt(7);
     return collum;
 }
-
+//funkce vrátí šířku/výšku hrací plochy
 function get_total_tiles(){
     return Math.sqrt(document.getElementsByName('tiles').length);
 }
-
+//funkce vytvoří 2D pole a naplní ho 0
 function create_struct(){
-    //to_win_got = size;
-    
     var total_tiles = get_total_tiles();
-    //total_tiles = Math.sqrt(total_tiles);
     var test_arr = [];
-   // to_win_got = document.getElementsById()
-
     for(let i = 0; i < total_tiles; i++){
         test_arr.push(0);
     }
-    //alert(test_arr[2]);
     for(let j = 0; j < total_tiles; j++){
         tiles[j] = [test_arr];
     }
-    
 }
-
+//funkce vrací ID protihráče - využito ke změně aktuálního hráče
 function switch_player(p){
     if(p == 1){
         return 2;
@@ -47,22 +37,15 @@ function switch_player(p){
         return 1;
     }
 }
-
+//funkce uloží uskutečněný tah aktuálního hráče po kliknutí na buňku
 function save_tile(element){
-    
     var el = element.id;
-   // alert(to_win_got);
     tiles[get_index_row(el)][get_index_collum(el)] = player;
-    change_tile(element);
-        
+    change_tile(element);      
     player = switch_player(player);
-    
-    
 }
-
+//funkce změní obsah v buňce na O nebo X podle aktuálního hráče
 function change_tile(element){
-    //DEBUG
-    //alert(tiles);
     if(player == 1){
         element.value = "O";
     }
@@ -70,7 +53,7 @@ function change_tile(element){
         element.value = "X";
     }
 }
-
+//kontrola výhry vertikálně
 function vertical_check(w_tiles){
     var total_tiles = get_total_tiles();
     var win_cnt = 0;
@@ -92,7 +75,6 @@ function vertical_check(w_tiles){
             }
             if(tiles[j][i] == 2){
                 win2_cnt++;
-                //alert(win2_cnt);
                 if(win2_cnt == w_tiles){
                     return 2;
                 }
@@ -104,7 +86,7 @@ function vertical_check(w_tiles){
     }
     return 0;
 }
-
+//kontrola výhry horyzontálně
 function horyzontal_check(w_tiles){
     var total_tiles = get_total_tiles();
     var win_cnt = 0;
@@ -139,7 +121,7 @@ function horyzontal_check(w_tiles){
     return 0;
 }
 
-//diagonal left to right
+//kontrola výhry diagonálně z leva dole do prava nahoře
 function diagonal_check_l(w_tiles){
     var total_tiles = get_total_tiles();
     var win_cnt = 0;
@@ -176,7 +158,7 @@ function diagonal_check_l(w_tiles){
     }
     return 0;
 }
-//diagonal rigth ro left 
+//kontrola výhry diagonálně z leva nahoře do prava dole
 function diagonal_check_r(w_tiles){
     var total_tiles = get_total_tiles();
     var win_cnt = 0;
@@ -214,22 +196,19 @@ function diagonal_check_r(w_tiles){
     }
     return 0;
 }
-
+//reset hrací plochy
 function reset(){
     location.reload();
 }
-
+//funkce spustí jednotlivé testy na vyhru, tato funkce se spustí po každém tahu
 function check_winner(){
-    
-    var tile_scope;
-    
     if(vertical_check(to_win) == 1){
         return 1;
     }
     if(vertical_check(to_win) == 2){
         return 2;
     }
-     if(horyzontal_check(to_win) == 1){
+    if(horyzontal_check(to_win) == 1){
         return 1;
     }
     if(horyzontal_check(to_win) == 2){
@@ -248,7 +227,7 @@ function check_winner(){
         return 2;
     }
 }
-
+//funkce, která se aktivuje vždy po kliknutí na buňku, spouští celý algoritmus programu, finálně rozhoduje o vítězi
 function change(element){
     save_tile(element);
     var winner = check_winner();
@@ -264,4 +243,3 @@ function change(element){
 
 }
 
-//alert(get_total_tiles());

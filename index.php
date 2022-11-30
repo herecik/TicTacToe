@@ -8,16 +8,16 @@
     </head>
     <body onload="create_struct()">
         <div id="main">
+            <!--- Input form na zadání velikosti hrací plochy   ---->
             <center>
                 <form id='play_size_form' action = 'index.php' method = 'post'>
                     Rozměr hracího pole: <input name = 'param' type = 'text' >
                     <input type = 'submit' value = 'Submit'>
                 </form>
                 <?php 
+                    //generujeme samotné hrací pole
                     generate_field($_POST['param']);
                 ?>
-                <p id="test"> </p>
-             <!--- <p id="test2"> </p>---->
             </center>
         </div>
 
@@ -31,8 +31,10 @@
 </html>
 <?php 
     $tiles = [];
-
+    //funkce vezme zadanou velikost hracího pole a následně jej vygeneruje
+    //vygenerované hrací pole se skládá z buněk (input boxů), funkce přiřazuje buňkám index pro x a y souřadnice v hrací ploše
     function generate_field($size){
+        //kontrolujeme, zda si hráči založili dostatečně velkou hrací plochu
         if($size < 3){
             die("Mala hraci plocha!!");
         }
