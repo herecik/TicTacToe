@@ -177,7 +177,41 @@ function diagonal_check_l(w_tiles){
     return 0;
 }
 //diagonal rigth ro left 
-function diagonal_check_r(){
+function diagonal_check_r(w_tiles){
+    var total_tiles = get_total_tiles();
+    var win_cnt = 0;
+    var win2_cnt = 0;
+
+    for(let t = 2 * (total_tiles - 1); t >= 0; t--){
+        win_cnt = 0;
+        for(let x = 0; x <= total_tiles; x++){
+            var y = x - t;
+            if(y < 0 || y >= total_tiles || x < 0 || x >= total_tiles){
+                //skip
+            }
+            else {
+                if(tiles[x][y] == 1){
+                    win_cnt++;
+                    //alert(win_cnt);
+                    if(win_cnt == w_tiles){
+                        return 1;
+                    }
+                }
+                else if(tiles[x][y] == 2 || tiles[x][y] == null){
+                    win_cnt = 0;
+                }
+                if(tiles[x][y] == 2){
+                    win2_cnt++;
+                    if(win2_cnt == w_tiles){
+                        return 2;
+                    }
+                }
+                else if(tiles[x][y] == 1 || tiles[x][y] == null){
+                    win2_cnt = 0;
+                }
+            }
+        }
+    }
     return 0;
 }
 
