@@ -14,7 +14,7 @@
         <div id="main">
             <!--- Input form na zadání velikosti hrací plochy   ---->
             <?php include 'generate_playing_field.php' ?>
-                <?php include 'input_playing_field.php' ?>
+            <?php include 'input_playing_field.php' ?>
         </div>
         
     </body>
