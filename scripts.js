@@ -228,16 +228,17 @@ function check_winner(){
     }
 }
 //funkce, která se aktivuje vždy po kliknutí na buňku, spouští celý algoritmus programu, finálně rozhoduje o vítězi
+//Hráč 1 je kolečko, hráč 2 je křížek
 function change(element){
     save_tile(element);
     var winner = check_winner();
     if(winner == 1){
-        window.alert("winner1");
+        window.alert("Vyhrál O");
         reset();
 
     }
     else if (winner == 2){
-        window.alert('winner2');
+        window.alert('Vyhrál X');
         reset();
     }
 

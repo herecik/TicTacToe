@@ -1,5 +1,3 @@
-Web hra piškvorky. 
+# Web s menšími program projekty.
 
-Na stránce si uživatel zvolí velikost hracího pole a pomocí post proměnné tuto informaci předáme do php scriptu, který generuje hrací pole.
-
-Samotná hra je naprogramovaní v JS-
+Web zatím obsahuje hru poiškvorky

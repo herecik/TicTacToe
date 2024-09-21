@@ -1,6 +1,7 @@
-<form id='play_size_form' action = 'index.php' method = 'post'>
-    Rozměr hracího pole: <input name = 'param' type = 'text' >
-    <input type = 'submit' value = 'Submit'>
+<div class = "container">
+<form calss = "form" id='play_size_form' action = 'tictactoe.php' method = 'post'>
+    Rozměr hracího pole: <input class = "form__input" name = 'param' type = 'text' >
+    <input class = "form__input" type = 'submit' value = 'Potvrď'>
 </form>
            
 <?php 
@@ -10,4 +11,6 @@
                         $parameter_from_form = $_POST['param'];
                     }
                     generate_field($parameter_from_form);
-                ?>
+?>
+
+</div>
